@@ -3,7 +3,7 @@ require("dotenv").config();
 const Pokemon = require("../models/details");
 const collection = Router();
 
-collection.get("/", async (req, res) => {
+collection.get("/", (req, res) => {
   Pokemon.find()
     .then((pokeCollection) => {
       if (pokeCollection.length === 0)
@@ -40,4 +40,14 @@ collection.post("/catch", async (req, res) => {
       return res.status(500).json({ message: error.message });
     });
 });
+
+collection.delete("/release/:id", async (req, res) => {
+  const id = req.params.id;
+  Pokemon.findOneAndDelete({ pokeId: id })
+    .then(() => {
+      res.status(204).end();
+    })
+    .catch((error) => res.status(500).json({ message: error.message }));
+});
+
 module.exports = collection;
