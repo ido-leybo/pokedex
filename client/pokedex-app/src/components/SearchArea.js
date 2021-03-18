@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function SearchArea(props) {
+export default function SearchArea({ onClick }) {
   return (
-    <div>
+    <div className="search">
       Search
       <input placeholder="Enter pokemon name" />
-      <button onClick={props.onClick}>search pokemon</button>
+      <button onClick={onClick}>search pokemon</button>
     </div>
   );
 }

@@ -3,9 +3,11 @@ import ListItem from "./ListItem";
 
 export default function List() {
   return (
-    <div>
+    <div className="list">
       list
-      <ListItem />
+      <ul>
+        <ListItem />
+      </ul>
     </div>
   );
 }

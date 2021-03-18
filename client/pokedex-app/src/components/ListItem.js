@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function ListItem() {
-  return <div>List item</div>;
+  return <li className="item-list">List item</li>;
 }
