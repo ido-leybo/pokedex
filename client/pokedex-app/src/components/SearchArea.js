@@ -1,13 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class SearchArea extends Component {
-  render() {
-    return (
-      <div>
-        Search
-        <input placeholder="Enter pokemon name" />
-        <button>search pokemon</button>
-      </div>
-    );
-  }
+export default function SearchArea(props) {
+  return (
+    <div>
+      Search
+      <input placeholder="Enter pokemon name" />
+      <button onClick={props.onClick}>search pokemon</button>
+    </div>
+  );
 }
