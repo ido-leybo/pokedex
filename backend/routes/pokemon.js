@@ -16,6 +16,10 @@ pokemon.get("/:name", async (req, res) => {
       height: data.height,
       weight: data.weight,
       types: pokeTypes,
+      sprites: {
+        front: data.sprites.front_default,
+        back: data.sprites.back_default
+      }
     }
     res.send(details);
 });
