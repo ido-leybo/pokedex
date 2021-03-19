@@ -19,7 +19,7 @@ function App() {
   const [listState, setList] = useState([]);
   const [image, setImage] = useState(null);
 
-  const onClick = async (event) => {
+  const onSearchClick = async (event) => {
     const { value } = event.target.parentElement.children[0];
     console.log(value);
     let {
@@ -30,9 +30,29 @@ function App() {
     );
     src = pokeData.data.sprites.front;
     setImage(src);
+    setList([]);
     setDetails(pokeData.data);
   };
 
+  const onTypeClick = async (event) => {
+    const type = event.target.textContent;
+    console.log(type);
+    const pokeList = await axios.get(`http://localhost:3001/api/type/${type}`);
+    const updateList = pokeList.data.pokemons;
+    setList(updateList);
+  };
+
+  const clickOnNewPokemon = async (event) => {
+    const name = event.target.innerText;
+    console.log(name);
+    const pokeData = await axios.get(
+      `http://localhost:3001/api/pokemon/${name}`
+    );
+    const src = pokeData.data.sprites.front;
+    setImage(src);
+    setList([]);
+    setDetails(pokeData.data);
+  };
   const onOver = (event) => {
     let src = event.target.src;
     src = detailsState.sprites.back;
@@ -49,14 +69,15 @@ function App() {
   return (
     <div className="App">
       <h1>Pokedex</h1>
-      <SearchArea onClick={onClick} />
+      <SearchArea onClick={onSearchClick} />
       <Details
         details={detailsState}
         renderImage={image}
         onOver={onOver}
         onLeave={onLeave}
+        onClick={onTypeClick}
       />
-      <List list={listState} />
+      <List list={listState} onClick={clickOnNewPokemon} />
     </div>
   );
 }
