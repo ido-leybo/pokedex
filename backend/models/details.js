@@ -40,6 +40,11 @@ const pokemonSchema = new mongoose.Schema({
   sprites: {
     type: Object,
   },
+  captured: {
+    type: Boolean,
+    require: true,
+    default: false,
+  },
 });
 
 pokemonSchema.set("toJSON", {

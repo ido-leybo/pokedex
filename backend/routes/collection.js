@@ -22,7 +22,6 @@ collection.post("/catch", async (req, res) => {
       error: "name missing",
     });
   }
-  console.log(body);
   const pokemon = new Pokemon({
     name: body.name,
     pokeId: body.pokeId,
@@ -30,6 +29,7 @@ collection.post("/catch", async (req, res) => {
     height: body.height,
     weight: body.weight,
     sprites: body.sprites,
+    captured: body.captured,
   });
   pokemon
     .save()

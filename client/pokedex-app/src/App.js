@@ -11,6 +11,8 @@ const initialDetails = [
     height: "",
     weight: "",
     types: "",
+    sprites: "",
+    captured: "",
   },
 ];
 
@@ -22,16 +24,13 @@ function App() {
 
   const onSearchClick = async (event) => {
     const { value } = event.target.parentElement.children[0];
-    let {
-      src,
-    } = event.target.parentElement.parentElement.children[2].children[1];
     const pokeData = await axios.get(
       `http://localhost:3001/api/pokemon/${value}`
     );
     const data = pokeData.data;
-    src = pokeData.data.sprites.front;
+    console.log(data);
+    let src = pokeData.data.sprites.front;
     setImage(src);
-    setButton("catch");
     setList([]);
     setDetails({
       name: data.name,
@@ -40,7 +39,14 @@ function App() {
       height: data.height,
       weight: data.weight,
       sprites: data.sprites,
+      captured: data.captured,
     });
+    console.log(detailsState);
+    if (data.captured) {
+      setButton("release");
+    } else {
+      setButton("catch");
+    }
   };
 
   const onTypeClick = async (event) => {
@@ -85,6 +91,9 @@ function App() {
   };
 
   const onCatch = async () => {
+    detailsState.captured = true;
+    setDetails(detailsState);
+    console.log(detailsState);
     await axios.post(
       `http://localhost:3001/api/collection/catch`,
       detailsState
@@ -98,6 +107,8 @@ function App() {
     await axios.delete(`http://localhost:3001/api/collection/release/${id}`);
     console.log("delete pokemon");
     setButton("catch");
+    detailsState.captured = false;
+    setDetails(detailsState);
   };
 
   return (
