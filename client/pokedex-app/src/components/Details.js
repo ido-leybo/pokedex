@@ -5,7 +5,10 @@ export default function Details({
   renderImage,
   onOver,
   onLeave,
-  onClick,
+  onTypeClick,
+  buttonText,
+  buttonCatchClick,
+  buttonReleaseClick,
 }) {
   let types;
   if (details.types) {
@@ -14,6 +17,12 @@ export default function Details({
     types = [];
   }
 
+  let buttonType;
+  if (buttonText === "catch") {
+    buttonType = buttonCatchClick;
+  } else {
+    buttonType = buttonReleaseClick;
+  }
   return (
     <div className="details">
       <ul>
@@ -24,7 +33,7 @@ export default function Details({
           Types:
           {types.map((type) => {
             return (
-              <span key={type} onClick={onClick}>
+              <span key={type} onClick={onTypeClick}>
                 {type}
               </span>
             );
@@ -32,6 +41,7 @@ export default function Details({
         </li>
       </ul>
       <img src={renderImage} onMouseOver={onOver} onMouseLeave={onLeave} />
+      <button onClick={buttonType}>{buttonText}</button>
     </div>
   );
 }
