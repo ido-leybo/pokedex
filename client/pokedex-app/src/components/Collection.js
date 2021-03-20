@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Collection({ pokemons }) {
+function Collection({ pokemons, onClick }) {
     return (
         <div className = "collection">
             {pokemons.map(pokemon => {
                 return(
                     <div>
-                    <span>{pokemon.name}</span>
+                    <span onClick={onClick}>{pokemon.name}</span>
                     <img src = {pokemon.sprites.front} />
                     </div>
                 )

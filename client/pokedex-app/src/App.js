@@ -25,12 +25,16 @@ function App() {
   const [collection, setCollection] = useState([]);
 
   const onSearchClick = async (event) => {
-    const { value } = event.target.parentElement.children[0];
+    let value;
+    if(event.target.tagName === "SPAN"){ // when clicking on the pokemon name in the collection, is details will be displayed
+      value = event.target.innerText;
+    } else { // searching in the search field
+      value = event.target.parentElement.children[0].value;
+    }
     const pokeData = await axios.get(
       `http://localhost:3001/api/pokemon/${value}`
     );
     const data = pokeData.data;
-    console.log(data);
     let src = pokeData.data.sprites.front;
     setImage(src);
     setList([]);
@@ -137,7 +141,7 @@ function App() {
         buttonReleaseClick={onRelease}
         buttonText={button}
       />
-      <Collection pokemons = {collection} />
+      <Collection pokemons = {collection} onClick = {onSearchClick}/>
       <List list={listState} onClick={clickOnNewPokemon} />
     </div>
   );
