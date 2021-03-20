@@ -3,7 +3,7 @@ import SearchArea from "./components/SearchArea";
 import Details from "./components/Details";
 import List from "./components/List";
 import Collection from "./components/Collection";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const initialDetails = [
@@ -116,6 +116,10 @@ function App() {
     const res = await axios.get('http://localhost:3001/api/collection');
     setCollection(res.data);
   };
+
+  useEffect(() => {
+    getCollection();
+  }, []);
 
   return (
     <div className="App">
