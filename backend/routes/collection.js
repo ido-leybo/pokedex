@@ -6,8 +6,6 @@ const collection = Router();
 collection.get("/", (req, res) => {
   Pokemon.find()
     .then((pokeCollection) => {
-      if (pokeCollection.length === 0)
-        return res.json({ message: "You have no Pokemons" });
       res.json(pokeCollection);
     })
     .catch((error) => {
