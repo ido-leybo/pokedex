@@ -34,7 +34,7 @@ function App() {
       value = event.target.parentElement.children[0].value;
     }
     const pokeData = await axios.get(
-      `http://localhost:3001/api/pokemon/${value}`
+      `/api/pokemon/${value}`
     );
     const data = pokeData.data;
     let src = pokeData.data.sprites.front;
@@ -58,7 +58,7 @@ function App() {
 
   const onTypeClick = async (event) => {
     const type = event.target.textContent;
-    const pokeList = await axios.get(`http://localhost:3001/api/type/${type}`);
+    const pokeList = await axios.get(`/api/type/${type}`);
     const updateList = pokeList.data.pokemons;
     setList(updateList);
   };
@@ -66,7 +66,7 @@ function App() {
   const clickOnNewPokemon = async (event) => {
     const name = event.target.innerText;
     const pokeData = await axios.get(
-      `http://localhost:3001/api/pokemon/${name}`
+      `/api/pokemon/${name}`
     );
     const src = pokeData.data.sprites.front;
     const data = pokeData.data;
@@ -101,7 +101,7 @@ function App() {
     detailsState.captured = true;
     setDetails(detailsState);
     await axios.post(
-      `http://localhost:3001/api/collection/catch`,
+      `/api/collection/catch`,
       detailsState
     );
     console.log("saved");
@@ -111,7 +111,7 @@ function App() {
 
   const onRelease = async () => {
     const id = detailsState.pokeId;
-    await axios.delete(`http://localhost:3001/api/collection/release/${id}`);
+    await axios.delete(`/api/collection/release/${id}`);
     console.log("delete pokemon");
     setButton("catch");
     detailsState.captured = false;
@@ -120,7 +120,7 @@ function App() {
   };
 
   const getCollection = async () => {
-    const res = await axios.get('http://localhost:3001/api/collection');
+    const res = await axios.get('/api/collection');
     setCollection(res.data);
   };
 
