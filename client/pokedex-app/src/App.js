@@ -112,6 +112,11 @@ function App() {
     setDetails(detailsState);
   };
 
+  const getCollection = async () => {
+    const res = await axios.get('http://localhost:3001/api/collection');
+    setCollection(res.data);
+  };
+
   return (
     <div className="App">
       <h1>Pokedex</h1>
