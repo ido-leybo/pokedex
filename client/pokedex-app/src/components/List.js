@@ -4,7 +4,7 @@ import ListItem from "./ListItem";
 export default function List({ list, onClick }) {
   return (
     <div className="list">
-      list
+      <h2 className = "list-title">Type List:</h2>
       <ul>
         {list.map((pokemon) => (
           <ListItem

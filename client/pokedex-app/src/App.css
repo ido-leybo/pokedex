@@ -1,38 +1,105 @@
-.App {
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-size: 20px;
+  cursor: default;
+  background-color: rgb(248, 252, 9)
+}
+.container{
+  text-align: center;
+  margin-top: 5%;
+}
+.title{
+  margin: 30px;
+}
+.search{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.search-field{
+  width: 20rem;
+  height: 2rem;
+  padding: 5px;
+  border: 2px black solid;
+}
+.btn{
+  border: none;
+  background-color: aqua;
+  width: 7rem;
+  height: 2rem;
+  padding: 0;
+  cursor: pointer;
+}
+.search-button{
+  border: 2px black solid;
+}
+.details{
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.detail{
+  padding: 5px;
+  margin: 3px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+img{
+  width: 110px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.imgBtn{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex-direction: column;
 }
-
-.App-link {
-  color: #61dafb;
+.clickable{
+  cursor: pointer;
+  justify-items: center;
+  align-items: center;
+  border: 2px solid orange;
+  border-radius: 9999px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.list{
+  /* width: 80%; */
+  padding-left: 10%;
+  text-align: center;
+}
+li{
+  list-style: none;
+  padding: 5px;
+}
+.collection{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+  margin-left: 10%;
+  margin-top:5%;
+  margin-bottom: 5%;
+  background-color : rgba(252, 195, 9, 0.4);
+  border-radius: 20px;
+}
+.collection-item{
+  display:flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  background-color : rgb(251, 255, 0);
+  border-radius: 10px;
+}
+.list-title{
+  padding: 15px;
+}
+.list-item{
+  width: 20rem;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+.list-item:nth-child(even){
+  background-color: rgba(252, 195, 9, 0.4);
 }
