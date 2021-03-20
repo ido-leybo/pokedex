@@ -101,6 +101,7 @@ function App() {
     );
     console.log("saved");
     setButton("release");
+    getCollection();
   };
 
   const onRelease = async () => {
@@ -110,6 +111,7 @@ function App() {
     setButton("catch");
     detailsState.captured = false;
     setDetails(detailsState);
+    getCollection();
   };
 
   const getCollection = async () => {
