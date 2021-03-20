@@ -98,7 +98,6 @@ function App() {
   const onCatch = async () => {
     detailsState.captured = true;
     setDetails(detailsState);
-    console.log(detailsState);
     await axios.post(
       `http://localhost:3001/api/collection/catch`,
       detailsState
@@ -129,19 +128,21 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Pokedex</h1>
-      <SearchArea onClick={onSearchClick} />
-      <Details
-        details={detailsState}
-        renderImage={image}
-        onOver={onOver}
-        onLeave={onLeave}
-        onTypeClick={onTypeClick}
-        buttonCatchClick={onCatch}
-        buttonReleaseClick={onRelease}
-        buttonText={button}
-      />
-      <Collection pokemons = {collection} onClick = {onSearchClick}/>
+      <div className = "container">
+        <h1 className = "title">Pokedex</h1>
+        <SearchArea onClick={onSearchClick} />
+        <Details
+          details={detailsState}
+          renderImage={image}
+          onOver={onOver}
+          onLeave={onLeave}
+          onTypeClick={onTypeClick}
+          buttonCatchClick={onCatch}
+          buttonReleaseClick={onRelease}
+          buttonText={button}
+          />
+        <Collection pokemons = {collection} onClick = {onSearchClick}/>
+      </div>
       <List list={listState} onClick={clickOnNewPokemon} />
     </div>
   );
