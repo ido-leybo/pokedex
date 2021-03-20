@@ -28,6 +28,8 @@ function App() {
     let value;
     if(event.target.tagName === "SPAN"){ // when clicking on the pokemon name in the collection, is details will be displayed
       value = event.target.innerText;
+    } else if(event.target.tagName === "IMG") {
+    value = event.target.previousElementSibling.innerText; 
     } else { // searching in the search field
       value = event.target.parentElement.children[0].value;
     }
