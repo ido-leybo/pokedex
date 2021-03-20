@@ -7,9 +7,9 @@ function Collection({ pokemons, onClick }) {
             {
                 pokemons.map(pokemon => {
                     return(
-                        <div>
-                        <span onClick={onClick}>{pokemon.name}</span>
-                        <img src = {pokemon.sprites.front} />
+                        <div onClick={onClick} className = "collection-item clickable">
+                        <span>{pokemon.name}</span>
+                        <img className = "collection-item" src = {pokemon.sprites.front} />
                         </div>
                     )
                 })

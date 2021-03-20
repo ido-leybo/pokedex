@@ -26,22 +26,25 @@ export default function Details({
   return (
     <div className="details">
       <ul>
-        <li>Name: {details.name}</li>
-        <li>Height: {details.height}</li>
-        <li>Weight: {details.weight}</li>
+        <li><span className = "detail">Name:</span> <span className = "detail">{details.name}</span></li>
+        <li><span className = "detail">Height:</span> <span className = "detail">{details.height}</span></li>
+        <li><span className = "detail">Weight:</span> <span className = "detail">{details.weight}</span></li>
         <li>
-          Types:
+        <span className = "detail">Types:</span>
           {types.map((type) => {
             return (
-              <span key={type} onClick={onTypeClick}>
+              <span className = "detail clickable" key={type} onClick={onTypeClick}>
                 {type}
               </span>
             );
           })}
         </li>
       </ul>
+      <div className = "imgBtn">
       <img src={renderImage} onMouseOver={onOver} onMouseLeave={onLeave} />
-      <button onClick={buttonType}>{buttonText}</button>
+      <button className = "btn" onClick={buttonType}>{buttonText}</button>
+      </div>
     </div>
   );
 }
+
