@@ -1,3 +1,4 @@
+require('dotenv').config()
 import "./App.css";
 import SearchArea from "./components/SearchArea";
 import Details from "./components/Details";
