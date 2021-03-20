@@ -2,6 +2,7 @@ import "./App.css";
 import SearchArea from "./components/SearchArea";
 import Details from "./components/Details";
 import List from "./components/List";
+import Collection from "./components/Collection";
 import { useState } from "react";
 import axios from "axios";
 
@@ -21,6 +22,7 @@ function App() {
   const [listState, setList] = useState([]);
   const [image, setImage] = useState(null);
   const [button, setButton] = useState("catch");
+  const [collection, setCollection] = useState([]);
 
   const onSearchClick = async (event) => {
     const { value } = event.target.parentElement.children[0];
@@ -41,7 +43,6 @@ function App() {
       sprites: data.sprites,
       captured: data.captured,
     });
-    console.log(detailsState);
     if (data.captured) {
       setButton("release");
     } else {
@@ -125,6 +126,7 @@ function App() {
         buttonReleaseClick={onRelease}
         buttonText={button}
       />
+      <Collection pokemons = {collection} />
       <List list={listState} onClick={clickOnNewPokemon} />
     </div>
   );
