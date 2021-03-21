@@ -39,7 +39,6 @@ function App() {
       `/api/pokemon/${value}`
     )
     .then(pokeData => {
-      console.log('HI')
       if(pokeData.status === 404) return alert('Pokemon not found')
       const data = pokeData.data;
       let src = pokeData.data.sprites.front;
@@ -73,7 +72,9 @@ function App() {
   };
 
   const clickOnNewPokemon = async (event) => {
-    const name = event.target.innerText;
+    const name = event.target === 'img' 
+      ? event.target.innerText 
+      : event.target.parentElement.parentElement.children[0].innerText;
     const pokeData = await axios.get(
       `/api/pokemon/${name}`
     );

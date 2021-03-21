@@ -3,7 +3,8 @@ import React from "react";
 export default function ListItem({ item, onClick }) {
   return (
     <li className="list-item clickable" onClick={onClick}>
-      {item.name}
+      <span>{item.name}</span>
+      <span><img src={item.image} /></span>
     </li>
   );
 }
