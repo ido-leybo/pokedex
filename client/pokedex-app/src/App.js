@@ -1,4 +1,3 @@
-require('dotenv').config()
 import "./App.css";
 import SearchArea from "./components/SearchArea";
 import Details from "./components/Details";
@@ -6,6 +5,7 @@ import List from "./components/List";
 import Collection from "./components/Collection";
 import { useEffect, useState } from "react";
 import axios from "axios";
+require('dotenv').config()
 
 const initialDetails = [
   {
@@ -34,27 +34,35 @@ function App() {
     } else { // searching in the search field
       value = event.target.parentElement.children[0].value;
     }
-    const pokeData = await axios.get(
+    console.log("Before");
+    axios.get(
       `/api/pokemon/${value}`
-    );
-    const data = pokeData.data;
-    let src = pokeData.data.sprites.front;
-    setImage(src);
-    setList([]);
-    setDetails({
-      name: data.name,
-      pokeId: data.id,
-      types: data.types,
-      height: data.height,
-      weight: data.weight,
-      sprites: data.sprites,
-      captured: data.captured,
-    });
-    if (data.captured) {
-      setButton("release");
-    } else {
-      setButton("catch");
-    }
+    )
+    .then(pokeData => {
+      console.log('HI')
+      if(pokeData.status === 404) return alert('Pokemon not found')
+      const data = pokeData.data;
+      let src = pokeData.data.sprites.front;
+      setImage(src);
+      setList([]);
+      setDetails({
+        name: data.name,
+        pokeId: data.id,
+        types: data.types,
+        height: data.height,
+        weight: data.weight,
+        sprites: data.sprites,
+        captured: data.captured,
+      });
+      if (data.captured) {
+        setButton("release");
+      } else {
+        setButton("catch");
+      }
+    })
+    .catch(e => {
+      setDetails(null);
+    })
   };
 
   const onTypeClick = async (event) => {

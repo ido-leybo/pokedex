@@ -10,6 +10,8 @@ export default function Details({
   buttonCatchClick,
   buttonReleaseClick,
 }) {
+
+  if(!details) return <div className = "notfound">Pokemon Not Found</div>
   let types;
   if (details.types) {
     types = details.types;

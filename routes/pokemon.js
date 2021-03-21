@@ -6,13 +6,28 @@ const pokemon = Router();
 
 pokemon.get("/:name", async (req, res) => {
   const pokeName = req.params.name;
-  const { data } = await axios.get(
+  axios.get(
     `https://pokeapi.co/api/v2/pokemon/${pokeName}`
-  );
-  Pokemon.find({ name: pokeName }).then((result) => {
-    console.log(result);
-    const pokeTypes = data.types.map((pokeType) => pokeType.type.name);
-    if (result.length !== 0) {
+  )
+  .then((serverRes) => {
+    const data = serverRes.data;
+    Pokemon.find({ name: pokeName }).then((result) => {
+      const pokeTypes = data.types.map((pokeType) => pokeType.type.name);
+      if (result.length !== 0) {
+        const details = {
+          name: data.name,
+          id: data.id,
+          height: data.height,
+          weight: data.weight,
+          types: pokeTypes,
+          sprites: {
+            front: data.sprites.front_default,
+            back: data.sprites.back_default,
+          },
+          captured: true,
+        };
+        return res.send(details);
+      }
       const details = {
         name: data.name,
         id: data.id,
@@ -23,24 +38,14 @@ pokemon.get("/:name", async (req, res) => {
           front: data.sprites.front_default,
           back: data.sprites.back_default,
         },
-        captured: true,
+        captured: false,
       };
-      return res.send(details);
-    }
-    const details = {
-      name: data.name,
-      id: data.id,
-      height: data.height,
-      weight: data.weight,
-      types: pokeTypes,
-      sprites: {
-        front: data.sprites.front_default,
-        back: data.sprites.back_default,
-      },
-      captured: false,
-    };
-    res.send(details);
-  });
+      res.send(details);
+    });
+  })
+  .catch(err => {
+    res.status(404).json({error: err.message, message: "Pokemon Not Found"})
+  })
 });
 
 module.exports = pokemon;
