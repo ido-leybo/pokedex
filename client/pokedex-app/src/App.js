@@ -34,9 +34,8 @@ function App() {
     } else { // searching in the search field
       value = event.target.parentElement.children[0].value;
     }
-    console.log("Before");
     axios.get(
-      `/api/pokemon/${value}`
+      `/api/pokemon/${value.toLowerCase()}`
     )
     .then(pokeData => {
       if(pokeData.status === 404) return alert('Pokemon not found')
