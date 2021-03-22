@@ -61,13 +61,15 @@ img{
   border-radius: 9999px;
 }
 .list{
-  /* width: 80%; */
   padding-left: 10%;
   text-align: center;
 }
 li{
   list-style: none;
   padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .collection{
   display: flex;
@@ -102,4 +104,7 @@ li{
 }
 .list-item:nth-child(even){
   background-color: rgba(252, 195, 9, 0.4);
+}
+.pokeImg{
+  width: 75px;
 }
